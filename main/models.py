@@ -1,14 +1,14 @@
 from django.db import models
-
+from django.contrib.auth.models import User
 class Cidade (models.Model):
     nome = models.CharField(max_length=150)
     sigla_estado = models.CharField(max_length=2)
 
 class Empresa (models.Model):
-    nome = models.CharField(max_length=150)
-    cnpj = models.CharField(max_length=15)
-    telefone = models.CharField(max_length=15)
-    endereco =models.CharField(max_length=15)
+    nome = models.CharField(max_length=150,blank=False)
+    cnpj = models.CharField(max_length=15,blank=False)
+    telefone = models.CharField(max_length=15,blank=True)
+    endereco =models.CharField(max_length=150,blank=True)
     cidade = models.ForeignKey(Cidade,on_delete=models.CASCADE) 
 
 
@@ -25,3 +25,4 @@ class Vaga(models.Model):
     cidade = models.ForeignKey(Cidade,on_delete=models.CASCADE)
     empresa = models.ForeignKey(Empresa,on_delete=models.CASCADE)
     tipo_vaga = models.ForeignKey(TipoVaga,on_delete=models.CASCADE)
+    usuarios = models.ManyToManyField(User)
