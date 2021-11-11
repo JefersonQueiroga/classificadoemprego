@@ -77,12 +77,27 @@ WSGI_APPLICATION = 'classificado_emprego.wsgi.application'
 # Database
 # https://docs.djangoproject.com/en/3.2/ref/settings/#databases
 
+''' fdfdf f 
 DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.sqlite3',
         'NAME': BASE_DIR / 'db.sqlite3',
     }
 }
+'''
+# pip install mysqlclient
+DATABASES = {
+    'default': {
+        'ENGINE': 'django.db.backends.mysql', 
+        'NAME': 'banco_classificado', #nome do seu banco
+        'USER': 'root', #nome do usuário
+        'PASSWORD': '12345', #senha
+        'HOST': 'localhost',   # Or an IP Address that your DB is hosted on
+        'PORT': '3306',
+    }
+}
+
+
 
 
 # Password validation
