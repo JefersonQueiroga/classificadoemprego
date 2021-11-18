@@ -18,7 +18,7 @@
               <th scope="col">#</th>
               <th scope="col">Nome da Cidade</th>
               <th scope="col">Estado</th>
-      
+              <th scope="col">Imagem</th>
             </tr>
           </thead>
           <tbody>
@@ -27,6 +27,9 @@
                 <td>{{ forloop.counter }}</td>
                 <td>{{ obj.nome  }}</td>
                 <td>{{ obj.sigla_estado  }}</td>
+                <td> <img alt="image" src="/media/{{obj.foto}}" class="rounded-circle" width="65" data-toggle="title" title="">
+                </td>
+
               </tr>
             {% endfor %}
 
