@@ -1,8 +1,8 @@
-from django.contrib import admin
-from django.urls import path,include
-from django.conf.urls.static import static
+from django.urls import path
 from .views import *
 
 urlpatterns = [
-    path('', index, name='index'),
+   path('',index,name='index'),
+   path('acai/',acai_bom,name='acai'),
+   
 ] 
