@@ -3,8 +3,17 @@ from django.shortcuts import render
 from .models import Cidade
 
 def index(request):
-    lista = Cidade.objects.all()
-    return render(request,'main/index.html', context={ "cidades": lista})
+    return render(request,'main/index.html')
 
-def acai_bom(request):
-    return HttpResponse("Açai 500g - Leite Condensaddo - Granola - Nutella")
+# View para pegar cidades e retornar para url
+def listar_cidades(request):
+    lista = Cidade.objects.all()
+    return render(request,'main/lista_cidades.html',{"cidades": lista })
+
+
+
+def detalhe_cidade(request,pk):
+   
+    cidade = Cidade.objects.get(id=pk)
+
+    return render(request,'main/detalhe_cidade.html',{"cidade": cidade})
