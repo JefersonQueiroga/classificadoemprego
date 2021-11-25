@@ -8,3 +8,11 @@ def index(request):
 
 def acai_bom(request):
     return HttpResponse("Açai 500g - Leite Condensaddo - Granola - Nutella")
+
+def listagem_cidades( request ):
+    lista = Cidade.objects.all()
+    return render(request,'main/listar_cidades.html', context={ "cidades" : lista  })    
+
+def detalhe( request, id_cidade  ):
+    cidade = Cidade.objects.get(id= id_cidade )
+    return render(request, 'main/detalhe.html', context={'cidade':cidade})    
