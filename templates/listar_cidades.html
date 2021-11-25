@@ -1,0 +1,39 @@
+{% extends 'base.html' %}
+
+
+
+{% block centro %}
+<table class="table table-striped w-auto">
+
+    <!--Table head-->
+    <thead>
+        <tr>
+            <th>#</th>
+            <th>Nome da Cidade</th>
+            <th>Sigla do Estado</th>
+            <th>Imagem</th>
+            <th>Ação</th>
+        </tr>
+    </thead>
+    <!--Table head-->
+  
+    <!--Table body-->
+    <tbody>
+    
+    {% for objeto  in  cidades %}    
+        <tr class="table-info">
+            <th scope="row">{{ forloop.counter }}</th>
+            <td>{{ objeto.nome }}</td>
+            <td>{{ objeto.sigla_estado }}</td>
+            <td><img src="/media/{{objeto.foto}}" width="65" ></td>
+            <td>  <a href="{% url 'detalhe_cidade' objeto.id  %}"> Detalhes </a>   </td>
+        </tr>
+    {% endfor %}
+
+    </tbody>
+    <!--Table body-->
+  
+  
+  </table>
+{% endblock centro %}
+    
