@@ -16,3 +16,6 @@ def listagem_cidades( request ):
 def detalhe( request, id_cidade  ):
     cidade = Cidade.objects.get(id= id_cidade )
     return render(request, 'main/detalhe.html', context={'cidade':cidade})    
+
+def pagina_teste(request):
+    return render(request, 'testando.html')    
