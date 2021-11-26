@@ -19,6 +19,7 @@ class Empresa (models.Model):
     endereco =models.CharField(max_length=150,blank=True)
     cidade = models.ForeignKey(Cidade,on_delete=models.CASCADE) 
     email = models.EmailField(blank=False)
+    logotipo = models.FileField(upload_to='logotipo/',blank=True)
 
     def __str__(self):
         return self.nome
@@ -32,7 +33,6 @@ class TipoVaga (models.Model):
         return self.nome
 
 class Vaga(models.Model):
-    descricao = models.TextField()
     salario = models.DecimalField(max_digits=8, decimal_places=2)
     quantidade_vagas = models.IntegerField()
     escolaridade_exigida = models.CharField(max_length=150)
@@ -40,7 +40,9 @@ class Vaga(models.Model):
     cidade = models.ForeignKey(Cidade,on_delete=models.CASCADE)
     empresa = models.ForeignKey(Empresa,on_delete=models.CASCADE)
     tipo_vaga = models.ForeignKey(TipoVaga,on_delete=models.CASCADE)
-    usuarios = models.ManyToManyField(User)
-    
+    usuarios = models.ManyToManyField(User,blank=True)
+    observacao = models.TextField( blank=True)
+    descricao = models.TextField( blank=True)
+
     def __str__(self):
-        return self.descricao
+        return self.observacao

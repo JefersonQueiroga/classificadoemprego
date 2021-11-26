@@ -1,10 +1,10 @@
 from django.http.response import HttpResponse
 from django.shortcuts import render
-from .models import Cidade
+from .models import Vaga,Cidade
 
 def index(request):
-    lista = Cidade.objects.all()
-    return render(request,'index.html', context={ "cidades": lista})
+    vagas = Vaga.objects.all()
+    return render(request,'index.html', context={"vagas": vagas })
 
 def acai_bom(request):
     return HttpResponse("Açai 500g - Leite Condensaddo - Granola - Nutella")

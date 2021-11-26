@@ -1,4 +1,4 @@
- {% extends 'base.html' %}
+ {% extends 'base_main.html' %}
 
 
  
@@ -8,5 +8,23 @@
 
   
 {% block centro %}
-    <h2> Olá eu sou index da sua página</h2> 
+    <div class="row">
+        
+        {% for vaga in vagas %}    
+            
+            <div class="col-md-4 mb-2">
+                <div class="card p-3">
+                    <div class="d-flex flex-row mb-3"><img src="/media/{{vaga.empresa.logotipo}}" width="70">
+                        <div class="d-flex flex-column ml-2"><span>{{ vaga.empresa.nome }}</span></div>
+                    </div>
+                    <h6>Descrição: {{ vaga.descricao }}</h6>
+                    <h6>Cidade: {{ vaga.cidade }}</h6>
+                    <h6>Salário: {{ vaga.salario }}</h6>
+                    <h6>Quantidade de Vagas: {{ vaga.quantidade_vagas  }}</h6>
+                    <div class="d-flex justify-content-between install mt-3"><span class="text-primary">Detalhes&nbsp;<i class="fa fa-angle-right"></i></span></div>
+                </div>
+            </div>
+
+        {% endfor %}
+    </div>
 {% endblock %}
