@@ -1,10 +1,49 @@
 from django.http.response import HttpResponse
 from django.shortcuts import render
+from django.contrib import messages
+from main.forms import CidadeForm,VagasForm
 from .models import Vaga,Cidade
 
 def index(request):
     vagas = Vaga.objects.all()
     return render(request,'index.html', context={"vagas": vagas })
+
+
+
+
+# entrar primeira para pegar o formulário
+# e segunda para salvar
+def criar_cidade(request):
+    
+    if request.method == 'GET':
+        form = CidadeForm()
+        context = { 'primeiro_form': form }
+        return render(request,'main/form_cidade.html',context)
+    else:
+        form = CidadeForm(request.POST)
+
+        if form.is_valid():
+            form.save()  
+            form = CidadeForm()
+            messages.success(request, 'Cidade Cadastrada com Sucesso!')
+
+        context = { 'primeiro_form': form } 
+        return render(request,'main/form_cidade.html',context)
+
+def criar_vagas(request):
+    if request.method == 'GET':
+        form = VagasForm() 
+        context = {'form': form}
+        return render(request,'main/form_vagas.html',context)
+    else:
+        form = VagasForm(request.POST)
+        if form.is_valid():
+            form.save()
+            form = VagasForm()
+
+        context = {'form': form}
+        return render(request,'main/form_vagas.html',context)
+
 
 def acai_bom(request):
     return HttpResponse("Açai 500g - Leite Condensaddo - Granola - Nutella")

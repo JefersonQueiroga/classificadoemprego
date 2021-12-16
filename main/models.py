@@ -4,6 +4,7 @@ class Cidade (models.Model):
     nome = models.CharField(max_length=150)
     sigla_estado = models.CharField(max_length=2)
     foto = models.FileField(upload_to='cidades/',blank=True)
+    disponivel = models.BooleanField(default=True)
 
     def __str__(self):
         return self.nome
