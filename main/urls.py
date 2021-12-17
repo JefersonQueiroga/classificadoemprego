@@ -8,4 +8,6 @@ urlpatterns = [
    path('quem_somos/', quem_somos ,name='quem_somos'),
    path('form_cidade/',criar_cidade,name='criar_cidade'),
    path('form_vagas/',criar_vagas, name='criar_vagas'),
+   path('lista_vagas/',lista_vagas,name='lista_vagas'),
+   path('editar_vaga/<int:id>/', editar_vaga,name='editar_vaga'),
 ] 

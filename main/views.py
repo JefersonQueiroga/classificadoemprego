@@ -1,5 +1,5 @@
 from django.http.response import HttpResponse
-from django.shortcuts import render
+from django.shortcuts import render,get_object_or_404,redirect
 from django.contrib import messages
 from main.forms import CidadeForm,VagasForm
 from .models import Vaga,Cidade
@@ -44,6 +44,24 @@ def criar_vagas(request):
         context = {'form': form}
         return render(request,'main/form_vagas.html',context)
 
+def editar_vaga(request,id):
+    vaga = get_object_or_404(Vaga, pk=id)
+
+    if request.method == 'POST':
+        form = VagasForm(request.POST, instance=vaga)
+        if form.is_valid():
+            form.save()
+            return redirect('lista_vagas')
+    else:        
+       form = VagasForm(instance=vaga)
+
+    return render(request, 'main/form_vagas.html', {'form': form})
+
+def lista_vagas(request):
+    lista = Vaga.objects.all()
+    return render(request,'main/list_vagas.html', context={ "vagas" : lista  })    
+
+    return render(request,'main/list_vagas.html')
 
 def acai_bom(request):
     return HttpResponse("Açai 500g - Leite Condensaddo - Granola - Nutella")
