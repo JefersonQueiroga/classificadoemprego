@@ -8,6 +8,6 @@ from .views import *
 urlpatterns = [
     path('conta/login/', my_login ,name="login"),
     path('conta/logout/', logout_request, name='logout'),
-    path("conta/registrar/", register, name="register")
+    path("conta/registrar/", register, name="registro")
 
   ] 

@@ -9,4 +9,4 @@ class CidadeForm(ModelForm):
 class VagasForm(ModelForm):
     class Meta:
         model=Vaga
-        fields = ['descricao']
+        fields = '__all__'
