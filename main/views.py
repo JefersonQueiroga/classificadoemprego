@@ -46,24 +46,24 @@ def criar_vagas(request):
         context = {'form': form}
         return render(request,'main/form_vagas.html',context)
 
-def editar_vaga(request,id):
-    vaga = get_object_or_404(Vaga, pk=id)
+def lista_vagas(request):
+    vagas = Vaga.objects.all()
+    return render(request,'main/listar_vagas.html', context={"vagas": vagas })
 
+def editar_vagas (request,id_vaga):
+    vaga = get_object_or_404(Vaga, pk=id_vaga) # traz a vaga pelo id passado.
+    
     if request.method == 'POST':
-        form = VagasForm(request.POST, instance=vaga)
+        form = VagasForm(request.POST,instance=vaga)
         if form.is_valid():
             form.save()
             return redirect('lista_vagas')
-    else:        
-       form = VagasForm(instance=vaga)
+    else:
+        form = VagasForm(instance=vaga)        
 
-    return render(request, 'main/form_vagas.html', {'form': form})
+## criando e preenchendo o formulário
+    return render(request,'main/form_vagas.html', context={"form": form })
 
-def lista_vagas(request):
-    lista = Vaga.objects.all()
-    return render(request,'main/list_vagas.html', context={ "vagas" : lista  })    
-
-    return render(request,'main/list_vagas.html')
 
 def acai_bom(request):
     return HttpResponse("Açai 500g - Leite Condensaddo - Granola - Nutella")
