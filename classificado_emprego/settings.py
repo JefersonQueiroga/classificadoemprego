@@ -39,7 +39,8 @@ INSTALLED_APPS = [
     'django.contrib.messages',
     'django.contrib.staticfiles',
     'crispy_forms',
-    'main'
+    'main',
+    'conta',
 ]
 
 CRISPY_TEMPLATE_PACK = 'bootstrap4'
@@ -88,15 +89,10 @@ DATABASES = {
 
 DATABASES = {
     'default': {
-        'ENGINE': 'django.db.backends.mysql', 
-        'NAME': 'sistema_acai',
-        'USER': 'root',
-        'PASSWORD': '12345',
-        'HOST': 'localhost',   # Or an IP Address that your DB is hosted on
-        'PORT': '3306',
+        'ENGINE': 'django.db.backends.sqlite3',
+        'NAME': BASE_DIR /  'classificado.db'
     }
 }
-
 # Password validation
 # https://docs.djangoproject.com/en/3.2/ref/settings/#auth-password-validators
 
@@ -147,3 +143,8 @@ DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 
 MEDIA_URL = '/media/'
 MEDIA_ROOT = ( os.path.join(BASE_DIR, 'media')) 
+
+LOGIN_REDIRECT_URL = '/'
+LOGOUT_REDIRECT_URL = '/accounts/login'
+LOGIN_URL = 'login'
+LOGOUT_URL = 'logout'

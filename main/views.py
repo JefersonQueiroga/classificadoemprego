@@ -3,7 +3,9 @@ from django.shortcuts import render,get_object_or_404,redirect
 from django.contrib import messages
 from main.forms import CidadeForm,VagasForm
 from .models import Vaga,Cidade
+from django.contrib.auth.decorators import login_required
 
+@login_required
 def index(request):
     vagas = Vaga.objects.all()
     return render(request,'index.html', context={"vagas": vagas })
