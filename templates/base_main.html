@@ -94,7 +94,11 @@
                             Vagas
                           </a>
                           <div class="dropdown-menu" aria-labelledby="navbarDropdown">
-                            <a class="dropdown-item" href="{% url 'criar_vagas' %}">Cadastrar Vaga</a>
+                           
+                            {% if user.is_superuser %} 
+                              <a class="dropdown-item" href="{% url 'criar_vagas' %}">Cadastrar Vaga</a>
+                            {% endif %}
+
                             <a class="dropdown-item" href="{% url 'lista_vagas' %}">Listar_Vagas</a>
                           </div>
                         </li>

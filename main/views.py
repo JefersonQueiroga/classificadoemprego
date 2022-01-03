@@ -46,10 +46,12 @@ def criar_vagas(request):
         context = {'form': form}
         return render(request,'main/form_vagas.html',context)
 
+@login_required
 def lista_vagas(request):
     vagas = Vaga.objects.all()
     return render(request,'main/listar_vagas.html', context={"vagas": vagas })
 
+@login_required
 def editar_vagas (request,id_vaga):
     vaga = get_object_or_404(Vaga, pk=id_vaga) # traz a vaga pelo id passado.
     
